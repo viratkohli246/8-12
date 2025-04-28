@@ -1,0 +1,35 @@
+import numpy as np import matplotlib.pyplot as plt
+# Define the Array Factor Function
+def array_factorN, d, wavelength, theta, beta=®):
+Calculate the array factor for a uniform linear array.
+k = 2 * np.pi / wavelength # Wave number
+psi = k * d * np.cos(theta) + beta # Phase difference
+psi = np.outer(np.arange(N), psi)
+af = np.sum(np.exp(1j * psi), axis=0) # Summing over all elements
+return af
+# Define the Radiation Pattern Function
+def plot radiation pattern(N, d, wavelength, beta=0, title="Radiation Pattern"):
+精糖料
+Plot the radiation pattern of a uniform linear array.
+theta = np. linspace(0, 2 * np.pi, 360) # Angles from 0 to 360 degrees
+af = array_factorN, d, wavelength, theta, beta) # Compute array factor
+af_normalized = np.abs(af) / пp.max(np.abs(af)) # Normalize array factor
+# Plot the radiation pattern
+plt. figure(figsize=(6, 6))
+ax = plt.subplot(111, polar=True)
+ax.plot(theta, af_normalized, label=f"{title)")
+ax. legend()
+ax.set_title(title, fontsize=16)
+ax.set _theta zero_location("N°$]
+# Set 0 degrees at the top
+ax.set_theta_direction(-1) # Clockwise direction plt. show()
+# Define Parameters
+N = 8 # Number of elements in the array
+wavelength = 1 # Wavelength (normalized to 1)
+d values = [0.25, 0.5, 1] # Inter-element spacing (in wavelengths)
+# Plot Broadside Array Patterns
+print ("Broadside Array Patterns:") for d in d_values:
+plot_radiation pattern(N, d, wavelength, beta=0, title=f"Broadside Array (d = (d})")
+# Plot Endfire Array Patterns
+print ("Endfire Array Patterns:") for d in d_values:
+plot_radiation pattern(N, d, wavelength, beta=-2 * np-pi * d / wavelength, title=f"Endfire Array (d = {d}*)")
